@@ -1,0 +1,61 @@
+#!/bin/bash
+
+dotLength=0.2
+dashLength=$(echo "scale=2; $dotLength * 3" | bc)
+charPause=$(echo "scale=2; $dotLength * 3 - $dotLength" | bc)
+wordPause=$(echo "scale=2; $dotLength * 7 - $dashLength" | bc)
+
+function onLed() {
+	echo 0 > /sys/class/leds/led0/brightness
+}
+
+function offLed() {
+	echo 1 > /sys/class/leds/led0/brightness
+}
+
+function morse_sendChar() {
+code=$1
+for ((codeChar=0;codeChar<${#code};codeChar++)); do
+	case ${code:$codeChar:1} in
+		".")
+			onLed
+			sleep $dotLength
+			;;
+		"-")
+			onLed
+			sleep $dashLength
+			;;
+	esac
+	offLed
+	sleep $dotLength
+done
+sleep $charPause
+}
+
+function morse_sendString() {
+string=$1
+for ((stringChar=0;stringChar<${#string};stringChar++)); do
+	case ${string:$stringChar:1} in
+		"1") morse_sendChar ".----" ;;
+		"2") morse_sendChar "..---" ;;
+		"3") morse_sendChar "...--" ;;
+		"4") morse_sendChar "....-" ;;
+		"5") morse_sendChar "....." ;;
+		"6") morse_sendChar "-...." ;;
+		"7") morse_sendChar "--..." ;;
+		"8") morse_sendChar "---.." ;;
+		"9") morse_sendChar "----." ;;
+		"0") morse_sendChar "-----" ;;
+		".") morse_sendChar ".-.-.-" ;;
+		" ") sleep $wordPause ;;
+	esac
+	offLed
+done
+sleep $wordPause
+} 
+
+offLed
+while [ 1=1 ]; do
+sleep $(echo "scale=2; $dotLength * 10" | bc)
+morse_sendString $(hostname -i)
+done
