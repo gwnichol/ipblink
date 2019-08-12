@@ -1,15 +1,15 @@
 pkgname='ipblink-git'
-pkgver=0
+pkgver=r4.ebbcd98
 pkgrel=1
 pkgdesc="Blink IP address in morse"
-arch=('all')
+arch=('any')
 license=('GPL')
 depends=()
 makedepends=('git')
 optdepends=()
 provides=()
 conflicts=()
-source=('git://github.com/gwnichol/ipblink.git')
+source=('ipblink::git+https://github.com/gwnichol/ipblink.git')
 md5sums=('SKIP')
 
 pkgver() {
@@ -21,5 +21,6 @@ pkgver() {
 }
 
 package() {
+	cd "ipblink"
 	make DESTDIR="$pkgdir" install
 }
