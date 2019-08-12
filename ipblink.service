@@ -6,3 +6,6 @@ After=network-online.target
 [Service]
 ExecStart=/usr/bin/ipblink
 Type=simple
+
+[Install]
+WantedBy=multi-user.target
