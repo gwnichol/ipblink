@@ -1,0 +1,8 @@
+[Unit]
+Description=IPBlink
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ipblink
+Type=simple
