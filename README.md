@@ -13,10 +13,14 @@ an obvious separator between bytes.
 
 ### Build
 
-This repository includes a Makefile so that the script can be installed with `make install`. Also, included is a systemd service file that
-can be activated with `systemctl start ipblink.service && systemctl enable ipblink.service`. This will cause the IP address to blink after
-a network connection is made. For a Raspberry Pi with Arch Linux ARM installed, I added a PKGBUILD file.
-Consult [Makepkg#Usage](https://wiki.archlinux.org/index.php/Makepkg#Usage) in the Arch Linux WIKI on how to use it.
+This repository includes a Makefile so that the script can be installed with:
+`make install`
+
+Also, included is a systemd service file that
+can be activated with 
+`systemctl start ipblink.service && systemctl enable ipblink.service`
+
+This will cause the IP address to blink after a network connection is made. For a Raspberry Pi with Arch Linux ARM installed, I added a PKGBUILD file. Consult [Makepkg#Usage](https://wiki.archlinux.org/index.php/Makepkg#Usage) in the Arch Linux WIKI on how to use it.
 
 ### Applicable Morse Code Cheat Sheet
 
