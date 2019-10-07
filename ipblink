@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-dotLength=0.2
+dotLength=0.4
 dashLength=$(echo "scale=2; $dotLength * 3" | bc)
 charPause=$(echo "scale=2; $dotLength * 3 - $dotLength" | bc)
 wordPause=$(echo "scale=2; $dotLength * 7 - $dashLength" | bc)
